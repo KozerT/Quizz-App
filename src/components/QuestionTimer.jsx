@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const QuestionTimer = ({ timeout, onTimeout, mode }) => {
   const [remainingTime, setRemainingTime] = useState(timeout);
-
   useEffect(() => {
     const timer = setTimeout(onTimeout, timeout);
 
@@ -17,7 +16,7 @@ const QuestionTimer = ({ timeout, onTimeout, mode }) => {
     }, 100);
 
     return () => {
-      clearTimeout(interval);
+      clearInterval(interval);
     };
   }, []);
 

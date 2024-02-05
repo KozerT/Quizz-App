@@ -12,24 +12,24 @@ const Answers = ({ answers, selectedAnswer, answerState, onSelect }) => {
     <ul id="answers">
       {shuffledAnswersRef.current.map((answer) => {
         const isSelected = selectedAnswer === answer;
-        let cssStyle = "";
+        let cssClasses = "";
 
         if (answerState === "answered" && isSelected) {
-          cssStyle = "selected";
+          cssClasses = "selected";
         }
 
         if (
           (answerState === "correct" || answerState === "wrong") &&
           isSelected
         ) {
-          cssStyle = answerState;
+          cssClasses = answerState;
         }
 
         return (
           <li key={answer} className="answer">
             <button
               onClick={() => onSelect(answer)}
-              className={cssStyle}
+              className={cssClasses}
               disabled={answerState !== ""}
             >
               {answer}

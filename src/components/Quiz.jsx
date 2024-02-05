@@ -30,8 +30,8 @@ const Quiz = () => {
   return (
     <div id="quiz">
       <Question
-        questionIndex={activeQuestionIndex}
         key={activeQuestionIndex}
+        index={activeQuestionIndex}
         onSelectAnswer={handleSelectAnswer}
         onSkipAnswer={handleSkipAnswer}
       />

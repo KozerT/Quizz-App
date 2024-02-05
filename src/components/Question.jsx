@@ -3,7 +3,12 @@ import QuestionTimer from "./QuestionTimer.jsx";
 import Answers from "./Answers.jsx";
 import QUESTIONS from "../questions.js";
 
-const Question = ({ questionIndex, onSelectAnswer, onSkipAnswer }) => {
+const Question = ({
+  index,
+  activeQuestionIndex,
+  onSelectAnswer,
+  onSkipAnswer,
+}) => {
   const [answer, setAnswer] = useState({ selectedAnswer: "", isCorrect: null });
 
   let timer = 10000;
@@ -13,10 +18,10 @@ const Question = ({ questionIndex, onSelectAnswer, onSkipAnswer }) => {
   }
 
   if (answer.isCorrect !== null) {
-    timer = 2000;
+    timer = 1000;
   }
 
-  const handleSelectAnswer = () => {
+  const handleSelectAnswer = (answer) => {
     setAnswer({
       selectedAnswer: answer,
       isCorrect: null,
@@ -25,12 +30,12 @@ const Question = ({ questionIndex, onSelectAnswer, onSkipAnswer }) => {
     setTimeout(() => {
       setAnswer({
         selectedAnswer: answer,
-        isCorrect: QUESTIONS[questionIndex].answers[0] === answer,
+        isCorrect: QUESTIONS[index].answers[0] === answer,
       });
 
       setTimeout(() => {
         onSelectAnswer(answer);
-      }, 2000);
+      }, 1000);
     }, 1000);
   };
 
@@ -50,9 +55,9 @@ const Question = ({ questionIndex, onSelectAnswer, onSkipAnswer }) => {
         onTimeout={answer.selectedAnswer === "" ? onSkipAnswer : null}
         mode={answerState}
       />
-      <h2>{QUESTIONS[questionIndex].text}</h2>
+      <h2>{QUESTIONS[index].text}</h2>
       <Answers
-        answers={QUESTIONS[questionIndex].answers}
+        answers={QUESTIONS[index].answers}
         selectedAnswer={answer.selectedAnswer}
         answerState={answerState}
         onSelect={handleSelectAnswer}

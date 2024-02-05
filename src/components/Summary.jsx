@@ -51,7 +51,7 @@ const Summary = ({ userAnswers }) => {
             <li key={index}>
               <h3>{index + 1}</h3>
               <p className="question">{QUESTIONS[index].text}</p>
-              <p className={cssClass}>{answer ?? "Skipped"}</p>
+              <p className={cssClass}>{answer ?? "skipped"}</p>
             </li>
           );
         })}
